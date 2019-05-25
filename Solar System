@@ -1,0 +1,63 @@
+#Python
+
+
+
+#E.D
+import tkinter
+
+class MyProject:
+    def __init__(self):
+        #Main Window
+        self.__main_window  = tkinter.Tk()
+        #window Title
+        self.__main_window.title('The Solar System')
+        #self.__main_window.geometry('500x500')
+        self.create_widget()
+
+        #Start mainloop
+        tkinter.mainloop()
+    def create_widget(self):
+
+        #Createcanvas widget
+        self.__canvas = tkinter.Canvas(self.__main_window,  width = 1250, height = 450, bg = 'black')
+
+        #draw the circle
+        #Represent the planets 12 planets
+
+        #The Sun
+        self.__canvas.create_arc(-129,-130,212,220, start = 80, extent = -359.99, fill = 'yellow', outline = 'red', width = 4 )
+        #Planets
+        self.__canvas.create_oval(260, 170, 300 ,212, fill='dimgrey', outline='grey')#Merury
+        self.__canvas.create_oval(390, 190, 330, 250, fill='brown', outline='brown')#Venus
+        self.__canvas.create_oval(430, 130, 500,200,  fill='Blue', outline='green', width = '3')#Earth
+        self.__canvas.create_oval(520, 207, 570, 260, fill='sienna', outline='red', width = 2) #Mars
+        self.__canvas.create_oval(640, 205, 760, 315, fill='moccasin', outline='beige', width = 2)#Jupiter
+        self.__canvas.create_oval(790, 140, 900, 240, fill='snow', outline = 'lightgrey', width = 2)#Saturn
+        self.__canvas.create_oval(925, 285, 1015, 370, fill='cornflowerblue', outline = 'lightgrey', width = 2)#Uranus
+        self.__canvas.create_oval(1045, 120, 1100,180, fill = 'lavender', outline = 'lightgrey', width = 2)#Neptune
+        self.__canvas.create_oval(1170,100, 1210, 140, fill = 'sandybrown',outline = 'lightgrey', width = 2)#Pluto
+
+
+    # Naming the planets and the sun
+        self.__canvas.create_text(50, 65, text='Sun', fill = 'black', font= 'Times 22 italic bold')
+        self.__canvas.create_text(270, 230, text='Mercury', fill='White', font='Times 15 italic bold')
+        self.__canvas.create_text(360, 275, text='Venus', fill='darkcyan', font='Times 15 italic bold')
+        self.__canvas.create_text(460, 220, text='Earth', fill='royalblue', font='Times 15 italic bold')
+        self.__canvas.create_text(545, 275, text='Mars', fill='lavenderblush', font='Times 15 italic bold')
+        self.__canvas.create_text(705, 330, text='Jupiter', fill='indigo', font='Times 15 italic bold')
+        self.__canvas.create_text(840, 255, text='Saturn', fill='lightyellow', font='Times 15 italic bold')
+        self.__canvas.create_text(970, 385, text='Uranus', fill='lightsalmon', font='Times 15 italic bold')
+        self.__canvas.create_text(1065, 195, text='Neptune', fill='aliceblue', font='Times 15 italic bold')
+        self.__canvas.create_text(1187, 160, text='Pluto', fill='plum', font='Times 15 italic bold')
+        self.__canvas.create_text(1187, 160, text='Pluto', fill='oldlace', font='Times 15 italic bold')
+
+        #creating the arc on Saturn
+        self.__canvas.create_oval(770, 130, 925, 215,  outline='grey', width=2)  # Saturn
+
+        #PAck the canvas
+        self.__canvas.pack()
+
+my_project = MyProject()
+
+
+
