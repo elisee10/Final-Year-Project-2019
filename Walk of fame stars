@@ -1,0 +1,84 @@
+#By team partner 
+
+#Project 1 HollyWood Walk of Fame
+import tkinter
+import tkinter.font
+
+class MyGui:
+    def __init__(self):
+        self.__main_window = tkinter.Tk()
+        self.__main_window.title('Walk of Fame')
+        self.create_widget()
+        self.create_text()
+        #start the main loop
+        tkinter.mainloop()
+    def create_widget(self):
+        #create canvas
+        self.__canvas = tkinter.Canvas(self.__main_window, width = 400, height = 400)
+        #Create Squares
+        verts = [10,40,40,40,50,10,60,40,90,40,65,60,75,90,50,70,25,90,35,60]
+        self.__canvas.create_rectangle(0,0,100,100,fill = 'red', outline = 'black')
+        self.__canvas.create_rectangle(100,0,200,100,fill = 'blue', outline = 'black')
+        self.__canvas.create_rectangle(200,0,300,100,fill = 'green', outline = 'black')
+        self.__canvas.create_rectangle(300,0,400,100,fill = 'red', outline = 'black')
+        self.__canvas.create_rectangle(0,100,100,200,fill = 'orange',outline = 'black')
+        self.__canvas.create_rectangle(100,100,200,200,fill = 'purple', outline = 'black')
+        self.__canvas.create_rectangle(200,100,300,200,fill = 'violet', outline = 'black')
+        self.__canvas.create_rectangle(300,100,400,200,fill = 'red', outline = 'black')
+        self.__canvas.create_rectangle(0,200,100,300,fill = 'blue', outline = 'black')
+        self.__canvas.create_rectangle(100,200,200,300,fill = 'green', outline = 'black')
+        self.__canvas.create_rectangle(200,200,300,300,fill = 'blue', outline = 'black')
+        self.__canvas.create_rectangle(300,200,400,300,fill = 'violet', outline = 'black')
+        #create stars
+        star = self.__canvas.create_polygon(verts, fill = 'yellow')
+        star = self.__canvas.create_polygon(verts, fill = 'yellow')
+        self.__canvas.move(star,100,0)
+        star = self.__canvas.create_polygon(verts, fill = 'yellow')
+        self.__canvas.move(star,200,0)
+        star = self.__canvas.create_polygon(verts, fill = 'yellow')
+        self.__canvas.move(star,300,0)
+        star = self.__canvas.create_polygon(verts, fill = 'yellow')
+        self.__canvas.move(star,400,0)
+        star = self.__canvas.create_polygon(verts, fill = 'yellow')
+        self.__canvas.move(star,0,100)
+        star = self.__canvas.create_polygon(verts, fill = 'yellow')
+        self.__canvas.move(star,100,100)
+        star = self.__canvas.create_polygon(verts, fill = 'yellow')
+        self.__canvas.move(star,200,100)
+        star = self.__canvas.create_polygon(verts, fill = 'yellow')
+        self.__canvas.move(star,300,100)
+        star = self.__canvas.create_polygon(verts, fill = 'yellow')
+        self.__canvas.move(star,400,100)
+        star = self.__canvas.create_polygon(verts, fill = 'yellow')
+        self.__canvas.move(star,0,200)
+        star = self.__canvas.create_polygon(verts, fill = 'yellow')
+        self.__canvas.move(star,100,200)
+        star = self.__canvas.create_polygon(verts, fill = 'yellow')
+        self.__canvas.move(star,200,200)
+        star = self.__canvas.create_polygon(verts, fill = 'yellow')
+        self.__canvas.move(star,300,200)
+        star = self.__canvas.create_polygon(verts, fill = 'yellow')
+        self.__canvas.move(star,400,200)
+        
+         #create the text
+        self.__canvas.pack()
+    def create_text(self):
+        self.__font_options = tkinter.font.Font(family = 'Helvetica', size = 10, weight = 'bold')
+        self.__canvas.create_text(50,50,text = 'Jay Z', fill = 'black', font = self.__font_options)
+        self.__canvas.create_text(150,150,text = 'Kanye', fill = 'black', font = self.__font_options)
+        self.__canvas.create_text(250,250,text = 'Nas', fill = 'black', font = self.__font_options)
+        self.__canvas.create_text(150,50,text = 'Kylie', fill = 'black', font = self.__font_options)
+        self.__canvas.create_text(450,50,text = 'Kevin Heart', fill = 'black', font = self.__font_options)
+        self.__canvas.create_text(250,50,text = 'Sheran', fill = 'black', font = self.__font_options)
+        self.__canvas.create_text(350,50,text = 'Morgan', fill = 'black', font = self.__font_options)
+        self.__canvas.create_text(50,150,text = 'James', fill = 'black', font = self.__font_options)
+        self.__canvas.create_text(250,150,text = 'Efron', fill = 'black', font = self.__font_options)
+        self.__canvas.create_text(350,150,text = 'Gambino', fill = 'black', font = self.__font_options)
+        self.__canvas.create_text(50,250,text = 'Dr.Dre', fill = 'black', font = self.__font_options)
+        self.__canvas.create_text(150,250,text = 'Jackson ', fill = 'black', font = self.__font_options)
+        self.__canvas.create_text(350,250,text = 'Swift', fill = 'black', font = self.__font_options)
+        self.__canvas.pack()
+        
+Pro3 = MyGui()
+        
+        
