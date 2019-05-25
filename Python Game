@@ -1,0 +1,182 @@
+# By Caleb 
+
+from tkinter import *
+from PIL import Image, ImageTk
+import tkinter.messagebox
+import random
+
+
+class Choose:
+
+    def __init__(self):
+        self.__main_window = Tk()
+        self.__main_window.title('Choose a Starter')
+        self.__main_window.geometry('500x500')
+        self.create_widgets()
+        mainloop()
+
+    def create_widgets(self):
+        self.__top_frame = Frame(self.__main_window)
+        self.__mid_frame = Frame(self.__main_window)
+        self.__bottom_frame = Frame(self.__main_window)
+        self.__button_frame = Frame(self.__main_window)
+
+        self.__starter_var = StringVar()
+        self.__starter_var.set('N/A')
+
+        self.__starter1 = Radiobutton(self.__top_frame, text='Venusaur', variable=self.__starter_var, value='Venusaur')
+        self.__starter2 = Radiobutton(self.__mid_frame, text='Blastoise', variable=self.__starter_var,
+                                      value='Blastoise')
+        self.__starter3 = Radiobutton(self.__bottom_frame, text='Charizard', variable=self.__starter_var,
+                                      value='Charizard')
+
+        self.__venusaur = PhotoImage(file='pokemon\\starter_venusaur.png')
+        self.__blastoise = PhotoImage(file='pokemon\\starter_blastoise.png')
+        self.__charizard = PhotoImage(file='pokemon\\starter_charizard.png')
+
+        self.__v_label = Label(self.__top_frame, image=self.__venusaur)
+        self.__b_label = Label(self.__mid_frame, image=self.__blastoise)
+        self.__c_label = Label(self.__bottom_frame, image=self.__charizard)
+
+        self.__starter1.pack(side='left')
+        self.__v_label.pack(side='left')
+        self.__starter2.pack(side='left')
+        self.__b_label.pack(side='left')
+        self.__starter3.pack(side='left')
+        self.__c_label.pack(side='left')
+
+        self.__value = StringVar()
+
+        self.__choose = Button(self.__button_frame, text='I Choose You!', command=self.__main_window.destroy, bg='red', fg='white')
+        self.__choose.pack()
+        self.__display = Label(self.__button_frame, text=f'You chose {self.__starter_var.get()}')
+
+        self.__top_frame.pack()
+        self.__mid_frame.pack()
+        self.__bottom_frame.pack()
+        self.__button_frame.pack()
+
+    def show_pokemon(self):
+        return self.__starter_var.get()
+
+
+class Game:
+
+    def __init__(self, pokemon):
+        self.__main_window = Tk()
+        self.__main_window.title('Pokemon Battle')
+        self.__main_window.geometry('500x500')
+        self.__pokemon = pokemon
+        self.create_widgets(pokemon)
+        mainloop()
+
+
+    def create_widgets(self, pokemon):
+
+        self.__moves_var = IntVar()
+
+        self.__moves_var.set(0)
+
+
+        self.__top_frame = Frame(self.__main_window)
+        self.__mid_frame = Frame(self.__main_window)
+        self.__bottom_frame = Frame(self.__main_window)
+        self.__button_frame = Frame(self.__main_window)
+        self.__user_health = IntVar()
+        self.__opp_health = IntVar()
+        self.__user_health.set(500)
+        self.__opp_health.set(500)
+
+        if pokemon == 'Venusaur':
+            self.__opp_pokemon = 'Charizard'
+            self.__moveset = {'Flamethrower': 70, 'Slash': 50, 'Bite': 30, 'Fire Blast': 120}
+            self.__list = ['Flamethrower', 'Slash', 'Bite', 'Fire Blast']
+
+            self.__move1 = Radiobutton(self.__mid_frame, text='Razor Leaf', variable=self.__moves_var, value=50)
+            self.__move2 = Radiobutton(self.__mid_frame, text='Vine whip', variable=self.__moves_var, value=90)
+            self.__move3 = Radiobutton(self.__mid_frame, text='Take Down', variable=self.__moves_var, value=70)
+            self.__move4 = Radiobutton(self.__mid_frame, text='Bite', variable=self.__moves_var, value=40)
+
+        elif pokemon == 'Blastoise':
+            self.__opp_pokemon = 'Venusaur'
+            self.__moveset = {'Razor Leaf': 50, 'Vine whip': 90, 'Take Down': 70, 'Bite': 40}
+            self.__list = ['Razor Leaf', 'Vine whip', 'Take Down', 'Bite']
+
+            self.__move1 = Radiobutton(self.__mid_frame, text='Water Gun', variable=self.__moves_var, value=30)
+            self.__move2 = Radiobutton(self.__mid_frame, text='Hydro Pump', variable=self.__moves_var, value=120)
+            self.__move3 = Radiobutton(self.__mid_frame, text='Bite', variable=self.__moves_var, value=50)
+            self.__move4 = Radiobutton(self.__mid_frame, text='Take Down', variable=self.__moves_var, value=70)
+
+        elif pokemon == 'Charizard':
+            self.__opp_pokemon = 'Blastoise'
+            self.__moveset = {'Water Gun': 30, 'Hydro Pump': 120, 'Bite': 50, 'Take Down': 70}
+            self.__list = ['Water Gun', 'Hydro Pump', 'Bite', 'Take Down']
+
+            self.__move1 = Radiobutton(self.__mid_frame, text='Flamethrower', variable=self.__moves_var, value=70)
+            self.__move2 = Radiobutton(self.__mid_frame, text='Slash', variable=self.__moves_var, value=50)
+            self.__move3 = Radiobutton(self.__mid_frame, text='Bite', variable=self.__moves_var, value=30)
+            self.__move4 = Radiobutton(self.__mid_frame, text='Fire Blast', variable=self.__moves_var, value=120)
+
+        self.__battle = PhotoImage(file=f'pokemon\\{pokemon}.png')
+
+        self.__charizard_label = Label(self.__top_frame, image=self.__battle)
+        self.__charizard_label.pack(side='left')
+
+        self.__move1.pack()
+        self.__move2.pack()
+        self.__move3.pack()
+        self.__move4.pack()
+        self.__attack_button = Button(self.__bottom_frame, text='Attack', command=self.attack, bg='red', fg='white')
+        self.__quit_button = Button(self.__bottom_frame, text='Run', command=self.__main_window.destroy, bg='blue', fg='white')
+        self.__attack_button.pack(side='left')
+        self.__quit_button.pack(side='left')
+        self.__value = StringVar()
+        self.__u_health = Label(self.__button_frame, text=f"{pokemon}'s Health: ")
+        self.__display_u_health = Label(self.__button_frame, textvariable=self.__user_health)
+        self.__u_health.pack()
+        self.__display_u_health.pack()
+        self.__o_health = Label(self.__button_frame, text=f"Opponent's Health: ")
+        self.__display_o_health = Label(self.__button_frame, textvariable=self.__opp_health)
+        self.__o_health.pack()
+        self.__display_o_health.pack()
+        self.__top_frame.pack()
+        self.__mid_frame.pack()
+        self.__bottom_frame.pack()
+        self.__button_frame.pack()
+
+    def attack(self):
+
+        self.__opp_health.set(self.__opp_health.get() - self.__moves_var.get())
+
+        move = random.choice(self.__list)
+
+        tkinter.messagebox.showinfo('Opponent Attack', f'{self.__opp_pokemon} used {move}')
+        self.__user_health.set(self.__user_health.get() - self.__moveset[move])
+        move = None
+        if self.__opp_health.get() <= 0:
+            tkinter.messagebox.showinfo('Pokemon Game','You Lost!')
+            self.__main_window.destroy()
+        elif self.__user_health.get() <= 0:
+            tkinter.messagebox.showinfo('Pokemon Game','You Won!')
+            self.__main_window.destroy()
+
+
+
+
+
+
+run = 1
+
+while run:
+    choose_starter = Choose()
+    run = 0
+
+if choose_starter.show_pokemon() == 'Venusaur':
+    p = Game('Venusaur')
+elif choose_starter.show_pokemon() == 'Blastoise':
+    p = Game('Blastoise')
+elif choose_starter.show_pokemon() == 'Charizard':
+    p = Game('Charizard')
+
+
+
